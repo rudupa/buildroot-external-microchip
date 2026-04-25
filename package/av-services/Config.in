@@ -1,0 +1,15 @@
+config BR2_PACKAGE_AV_SERVICES
+	bool "av-services"
+	depends on BR2_INIT_SYSTEMD
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	select BR2_PACKAGE_LIBCURL
+	help
+	  AV core platform services for gateway, health monitoring,
+	  logging, OTA, and orchestrator process supervision.
+	  This package builds from the av_services submodule at the
+	  Stage1 repository root and installs systemd units plus
+	  default service configuration files.
+
+comment "av-services needs systemd, C++, and a toolchain with threads"
+	depends on !BR2_INIT_SYSTEMD || !BR2_INSTALL_LIBSTDCPP || !BR2_TOOLCHAIN_HAS_THREADS
